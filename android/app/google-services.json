@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "540782558676",
+    "project_id": "joapp-a68ca",
+    "storage_bucket": "joapp-a68ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540782558676:android:c72bb3084d500119856a41",
+        "android_client_info": {
+          "package_name": "com.example.joapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540782558676-r45sckdq0soqbbvcteda2ccudtsi1g6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxAqKG9JWwcIlOxbCI6N0UFy0bVDk3qR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540782558676-r45sckdq0soqbbvcteda2ccudtsi1g6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
