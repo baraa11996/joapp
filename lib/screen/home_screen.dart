@@ -5,6 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:joapp/screen/person_screen.dart';
+import 'package:joapp/screen/post_screen.dart';
+
+import '../models/category.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -113,7 +116,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/category_screen');
+                      },
                       style: ElevatedButton.styleFrom(
                           primary: Color(0xFF042C4C),
                           shape: RoundedRectangleBorder(
@@ -132,127 +137,53 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(
                   height: 150.h,
-                  child: ListView(
+                  child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        width: 200.w,
-                        height: 400.h,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                'images/programming.jpg',
-                              ),
-                            )),
+                    itemCount: categories.length,
+                    itemBuilder: (context, index) {
+                      final category = categories[index];
+                      return InkWell(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PostScreen(category: category),
+                            ),
+                          );
+                        },
                         child: Container(
+                          margin: EdgeInsets.only(right: 10),
                           clipBehavior: Clip.antiAlias,
+                          width: 200.w,
+                          height: 400.h,
                           decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.bottomRight,
-                                  colors: [
-                                    Colors.black.withOpacity(.8),
-                                    Colors.black.withOpacity(.2),
-                                  ])),
-                          child: Center(
-                            child: Text('برمجة', style: TextStyle(fontSize: 30.sp,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),),
+                              borderRadius: BorderRadius.circular(25),
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                  category.image,
+                                ),
+                              )),
+                          child: Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.bottomRight,
+                                    colors: [
+                                      Colors.black.withOpacity(.8),
+                                      Colors.black.withOpacity(.2),
+                                    ])),
+                            child: Center(
+                              child: Text(category.name, style: TextStyle(fontSize: 30.sp,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),),
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        width: 200,
-                        height: 400,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                'images/cant.jpg',
-                              ),
-                            )),
-                        child: Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.bottomRight,
-                                  colors: [
-                                    Colors.black.withOpacity(.8),
-                                    Colors.black.withOpacity(.2),
-                                  ])),
-                          child: Center(
-                            child: Text('محاسبة', style: TextStyle(fontSize: 22,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        width: 200,
-                        height: 400,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25.r),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                'images/disgin.png',
-                              ),
-                            )),
-                        child: Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.bottomRight,
-                                  colors: [
-                                    Colors.black.withOpacity(.8),
-                                    Colors.black.withOpacity(.2),
-                                  ])),
-                          child: Center(
-                            child: Text('تصميم', style: TextStyle(fontSize: 22.sp,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        width: 200,
-                        height: 400,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25.r),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                'images/eng.jpg',
-                              ),
-                            )),
-                        child: Container(
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.bottomRight,
-                                  colors: [
-                                    Colors.black.withOpacity(.8),
-                                    Colors.black.withOpacity(.2),
-                                  ])),
-                          child: Center(
-                            child: Text('هندسة', style: TextStyle(fontSize: 22.sp,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                      );
+                    },
+                  )
+                  ,
                 ),
                 SizedBox(
                   height: 25.h,
@@ -279,8 +210,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 15.h,
                 ),
                 SizedBox(
-                  height: 250.h,
-                  width: 200,
+                  height: 270.h,
+                  width: double.infinity,
                   child: StreamBuilder(
                     stream: storyref,
                     builder: (
@@ -298,6 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       final data = snapshot.requireData;
                       return ListView.builder(
+                        scrollDirection: Axis.horizontal,
                         itemCount: data.size,
                         itemBuilder: (context, index) {
                           return Center(

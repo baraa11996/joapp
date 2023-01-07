@@ -4,6 +4,7 @@ import 'bn_screen/card_screen.dart';
 import 'bn_screen/category_screen.dart';
 import 'bn_screen/emp_screen.dart';
 import 'bn_screen/profile_screen.dart';
+import 'category_sreen.dart';
 import 'home_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
@@ -21,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        BnScreen(title: 'Category', widget: CategoryScreen()),
+        BnScreen(title: 'Category', widget: CategoryScreen1()),
         BnScreen(title: 'Cart', widget: CardScreen()),
         BnScreen(title: 'Home', widget: HomeScreen()),
         BnScreen(title: 'Order', widget: EmpScreen()),

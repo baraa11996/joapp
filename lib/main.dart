@@ -7,7 +7,9 @@ import 'package:joapp/screen/add_image.dart';
 import 'package:joapp/screen/auth/sgin_in.dart';
 import 'package:joapp/screen/auth/sign_up.dart';
 import 'package:joapp/screen/auth/sign_up_employ.dart';
+import 'package:joapp/screen/bn_screen/category_screen.dart';
 import 'package:joapp/screen/bn_screen/profile_screen.dart';
+import 'package:joapp/screen/category_sreen.dart';
 import 'package:joapp/screen/change_image.dart';
 import 'package:joapp/screen/home_screen.dart';
 import 'package:joapp/screen/lunchscreen.dart';
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
             Locale('ar'),
             Locale('en'),
           ],
+
           initialRoute: ('/lunch_screen'),
           routes: {
             '/lunch_screen' : (context) => LunchScreen(),
@@ -57,6 +60,7 @@ class MyApp extends StatelessWidget {
             '/select_image' : (context) => ChangeImage(),
             '/add_image' : (context) => AddImage(),
             '/profile_screen' : (context) => ProfileScreen(),
+            '/category_screen' : (context) => CategoryScreen1(),
           },
         );
       },

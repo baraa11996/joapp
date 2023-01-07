@@ -6,6 +6,7 @@ enum prefkey {
   email,
   id,
   password,
+  userType,
 }
 
 class SharedPrefController {
@@ -40,6 +41,14 @@ class SharedPrefController {
   }
 
   String get getId => _sharedPreferences.getString(prefkey.id.toString()) ?? "";
+
+  Future<void> saveUserId({
+    required String userType,
+  }) async {
+    await _sharedPreferences.setString(prefkey.userType.toString(), userType);
+  }
+
+  String get userType => _sharedPreferences.getString(prefkey.userType.toString()) ?? "";
 
   Future<void> saveLogin() async {
     await _sharedPreferences.setBool(prefkey.logged.toString(), true);

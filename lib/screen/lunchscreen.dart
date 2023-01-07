@@ -16,7 +16,7 @@ class _LunchScreenState extends State<LunchScreen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      String route = SharedPrefController().logged ? '/OutBording_screen' : '/main_screen';
+      String route = SharedPrefController().logged ? '/OutBording_screen' : '/OutBording_screen';
       Navigator.pushReplacementNamed(context, route);
     });
   }

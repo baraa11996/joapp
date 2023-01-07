@@ -66,6 +66,7 @@ class FbAuthController with Helpers {
       });
       print(userCredential.user);
       await SharedPrefController().saveId(id: userCredential.user!.uid);
+      await SharedPrefController().saveUserId(userType: '1');
 
       // await userCredential.user!.sendEmailVerification();
       await signOut();
@@ -105,6 +106,7 @@ class FbAuthController with Helpers {
       });
       print(userCredential.user);
       await SharedPrefController().saveId(id: userCredential.user!.uid);
+      await SharedPrefController().saveUserId(userType: '2');
 
       // await userCredential.user!.sendEmailVerification();
       await signOut();
