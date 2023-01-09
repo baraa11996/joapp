@@ -205,13 +205,14 @@ class _SignUpEmpScreenState extends State<SignUpEmpScreen> with Helpers{
   }
 
   Future<void> register() async {
-    bool status = await FbAuthController().createAccountEmploy(
+    bool status = await FbAuthController().createAccount(
       context: context,
       email: _emailEditingController.text,
       username: _userEditingController.text,
       city: _selectedLocation.toString(),
       password: _passwordEditingController.text,
       type: _password2EditingController.text,
+      number: 2,
     );
     Navigator.pushNamed(context, '/sginin_screen');
   }

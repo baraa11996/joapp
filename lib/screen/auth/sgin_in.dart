@@ -28,6 +28,7 @@ class _SginInScreenState extends State<SginInScreen> with Helpers {
     _passwordEditingController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,10 +48,10 @@ class _SginInScreenState extends State<SginInScreen> with Helpers {
                   Text(
                     'تسجيل الدخول',
                     style: TextStyle(
-                        fontSize: 28,
-                        fontFamily: 'Muli',
-                        fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade700,
+                      fontSize: 28,
+                      fontFamily: 'Muli',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey.shade700,
                     ),
                   ),
                 ],
@@ -90,7 +91,7 @@ class _SginInScreenState extends State<SginInScreen> with Helpers {
                 controller: _emailEditingController,
                 hint: 'ادخل البريد الالكتروني',
                 lable: 'البريد الالكتروني',
-                suffixIcon: Icons.email ,
+                suffixIcon: Icons.email,
                 obscureText: false,
               ),
               SizedBox(
@@ -100,10 +101,12 @@ class _SginInScreenState extends State<SginInScreen> with Helpers {
                 controller: _passwordEditingController,
                 hint: 'ادخل كلمة المرور',
                 lable: 'كلمة المرور',
-                suffixIcon: Icons.remove_red_eye ,
+                suffixIcon: Icons.remove_red_eye,
                 obscureText: true,
               ),
-              SizedBox(height: 60,),
+              SizedBox(
+                height: 60,
+              ),
               ElevatedButton(
                 onPressed: () {
                   performLogin();
@@ -117,8 +120,7 @@ class _SginInScreenState extends State<SginInScreen> with Helpers {
                     minimumSize: const Size(double.infinity, 60),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
-                    )
-                ),
+                    )),
               ),
               SizedBox(height: 15),
               // Row(
@@ -145,6 +147,7 @@ class _SginInScreenState extends State<SginInScreen> with Helpers {
       ),
     );
   }
+
   Future<void> performLogin() async {
     if (checkData()) {
       await login();
@@ -170,8 +173,9 @@ class _SginInScreenState extends State<SginInScreen> with Helpers {
         email: _emailEditingController.text,
         password: _passwordEditingController.text);
     if (status) {
-      SharedPrefController().saveLogin();
-      SharedPrefController().savePassword(password: _passwordEditingController.text.toString());
+      await SharedPrefController().saveLogin();
+      await SharedPrefController()
+          .savePassword(password: _passwordEditingController.text.toString());
       Navigator.pushReplacementNamed(context, '/main_screen');
     }
   }

@@ -34,7 +34,7 @@ class SharedPrefController {
     await _sharedPreferences.setString(prefkey.password.toString(), password);
   }
 
-  Future<void> saveId({
+  Future<void> saveUId({
     required String id,
   }) async {
     await _sharedPreferences.setString(prefkey.id.toString(), id);
@@ -42,13 +42,14 @@ class SharedPrefController {
 
   String get getId => _sharedPreferences.getString(prefkey.id.toString()) ?? "";
 
-  Future<void> saveUserId({
-    required String userType,
+  Future<void> saveUserType({
+    required int userType,
   }) async {
-    await _sharedPreferences.setString(prefkey.userType.toString(), userType);
+    await _sharedPreferences.setInt(prefkey.userType.toString(), userType);
   }
 
-  String get userType => _sharedPreferences.getString(prefkey.userType.toString()) ?? "";
+  int get userType =>
+      _sharedPreferences.getInt(prefkey.userType.toString()) ?? 1;
 
   Future<void> saveLogin() async {
     await _sharedPreferences.setBool(prefkey.logged.toString(), true);

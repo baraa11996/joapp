@@ -3,20 +3,26 @@ import '../../controller/fb_auth_controller.dart';
 import '../../helpers/helpers.dart';
 import '../../widgets/app_text_filed.dart';
 
-class SignUpScreen extends StatefulWidget  {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> with Helpers{
+class _SignUpScreenState extends State<SignUpScreen> with Helpers {
   late TextEditingController _emailEditingController;
   late TextEditingController _userEditingController;
   late TextEditingController _passwordEditingController;
   late TextEditingController _password2EditingController;
 
-  List<String> _locations = ['غزة','خانيونس', 'رفح', 'الوسطى', 'الشمال']; // Option 2
+  final List<String> _locations = [
+    'غزة',
+    'خانيونس',
+    'رفح',
+    'الوسطى',
+    'الشمال'
+  ]; // Option 2
   String? _selectedLocation;
 
   @override
@@ -42,13 +48,13 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
     return Scaffold(
       persistentFooterAlignment: AlignmentDirectional.topEnd,
       body: Padding(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           top: 40,
           right: 20,
           left: 20,
         ),
         child: Padding(
-          padding: EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10.0),
           child: ListView(
             children: [
               Row(
@@ -65,10 +71,8 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
                   ),
                 ],
               ),
-              SizedBox(
-                height: 30,
-              ),
-              Container(
+              const SizedBox(height: 30),
+              const SizedBox(
                 width: 100,
                 height: 100,
                 child: Image(
@@ -76,12 +80,10 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
                   image: AssetImage('images/response.png'),
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Text(
                     'JoApp',
                     style: TextStyle(
@@ -93,9 +95,7 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
                   ),
                 ],
               ),
-              SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               AppTextFiled(
                 controller: _userEditingController,
                 hint: 'ادخل اسم المستخدم',
@@ -103,9 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
                 suffixIcon: Icons.person,
                 obscureText: false,
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               AppTextFiled(
                 controller: _emailEditingController,
                 hint: 'ادخل البريد الالكتروني',
@@ -113,9 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
                 suffixIcon: Icons.email,
                 obscureText: false,
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               AppTextFiled(
                 controller: _passwordEditingController,
                 hint: 'ادخل كلمة المرور',
@@ -123,9 +119,7 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
                 suffixIcon: Icons.remove_red_eye,
                 obscureText: true,
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               AppTextFiled(
                 controller: _password2EditingController,
                 hint: 'ادخل العمل الخاص بك',
@@ -133,9 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
                 suffixIcon: Icons.work,
                 obscureText: false,
               ),
-              SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               Container(
                 width: 200,
                 decoration: BoxDecoration(
@@ -143,11 +135,11 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
                 ),
                 child: Center(
                   child: DropdownButton(
-                    hint: Text('اختار المدينة '),
+                    hint: const Text('اختار المدينة '),
                     value: _selectedLocation,
                     items: _locations.map((location) {
                       return DropdownMenuItem(
-                        child: new Text(location),
+                        child: Text(location),
                         value: location,
                       );
                     }).toList(),
@@ -159,11 +151,9 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: ()  {
+                onPressed: () {
                   performRegister();
                 },
                 child: const Text(
@@ -171,11 +161,12 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 style: ElevatedButton.styleFrom(
-                    primary: Color(0xFF042C4C),
-                    minimumSize: const Size(double.infinity, 60),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    )),
+                  primary: const Color(0xFF042C4C),
+                  minimumSize: const Size(double.infinity, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
               ),
             ],
           ),
@@ -183,6 +174,7 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
       ),
     );
   }
+
   Future<void> performRegister() async {
     if (checkData()) {
       await register();
@@ -205,13 +197,14 @@ class _SignUpScreenState extends State<SignUpScreen> with Helpers{
   }
 
   Future<void> register() async {
-    bool status = await FbAuthController().createAccount(
+    await FbAuthController().createAccount(
       context: context,
       email: _emailEditingController.text,
       username: _userEditingController.text,
       city: _selectedLocation.toString(),
       password: _passwordEditingController.text,
       type: _password2EditingController.text,
+      number: 1,
     );
     Navigator.pushNamed(context, '/sginin_screen');
   }

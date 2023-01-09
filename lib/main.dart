@@ -7,7 +7,7 @@ import 'package:joapp/screen/add_image.dart';
 import 'package:joapp/screen/auth/sgin_in.dart';
 import 'package:joapp/screen/auth/sign_up.dart';
 import 'package:joapp/screen/auth/sign_up_employ.dart';
-import 'package:joapp/screen/bn_screen/category_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:joapp/screen/bn_screen/profile_screen.dart';
 import 'package:joapp/screen/category_sreen.dart';
 import 'package:joapp/screen/change_image.dart';
@@ -15,7 +15,6 @@ import 'package:joapp/screen/home_screen.dart';
 import 'package:joapp/screen/lunchscreen.dart';
 import 'package:joapp/screen/main_screen.dart';
 import 'package:joapp/screen/outbording_screen.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,41 +29,43 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(375, 812),
+      designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context , child) {
+      builder: (context, child) {
         return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
-              fontFamily: 'Muli',
+            fontFamily: 'Muli',
+            pageTransitionsTheme: const PageTransitionsTheme(
+              builders: {
+                TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+              },
+            ),
           ),
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          supportedLocales: const[
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: const [
             Locale('ar'),
             Locale('en'),
           ],
-
+          locale: const Locale('ar'),
           initialRoute: ('/lunch_screen'),
           routes: {
-            '/lunch_screen' : (context) => LunchScreen(),
-            '/OutBording_screen' : (context) => OutBording(),
-            '/sginin_screen' : (context) => SginInScreen(),
-            '/sign_up_screen' : (context) => SignUpScreen(),
-            '/sign_up_emp_screen' : (context) => SignUpEmpScreen(),
-            '/home_screen' : (context) => HomeScreen(),
-            '/main_screen' : (context) => MainScreen(),
-            '/select_image' : (context) => ChangeImage(),
-            '/add_image' : (context) => AddImage(),
-            '/profile_screen' : (context) => ProfileScreen(),
-            '/category_screen' : (context) => CategoryScreen1(),
+            '/lunch_screen': (context) => const LunchScreen(),
+            '/OutBording_screen': (context) => const OutBording(),
+            '/sginin_screen': (context) => const SginInScreen(),
+            '/sign_up_screen': (context) => const SignUpScreen(),
+            '/sign_up_emp_screen': (context) => const SignUpEmpScreen(),
+            '/home_screen': (context) => const HomeScreen(),
+            '/main_screen': (context) => const MainScreen(),
+            '/select_image': (context) => const ChangeImage(),
+            '/add_image': (context) => const AddImage(),
+            '/profile_screen': (context) => const ProfileScreen(),
+            '/category_screen': (context) => const CategoryScreen1(),
           },
         );
       },
     );
   }
 }
-

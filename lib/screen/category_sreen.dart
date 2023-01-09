@@ -20,7 +20,8 @@ class _CategoryScreen1State extends State<CategoryScreen1> {
         title: Text('صفحة الفئات',style: TextStyle(fontSize: 22.sp),),
         centerTitle: true,
         backgroundColor: Color(0xFF042C4C),
-        toolbarHeight: 70,
+        toolbarHeight: 70,     leadingWidth: 0,
+        leading: const SizedBox.shrink(),
       ),
       body: Padding(
         padding: EdgeInsets.all(8),

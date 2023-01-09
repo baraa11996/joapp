@@ -17,34 +17,61 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 2;
+
   @override
   // final List<BnScreen> _bnScreen = <BnScreen> ;
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: [
-        BnScreen(title: 'Category', widget: CategoryScreen1()),
-        BnScreen(title: 'Cart', widget: CardScreen()),
-        BnScreen(title: 'Home', widget: HomeScreen()),
-        BnScreen(title: 'Order', widget: EmpScreen()),
-        BnScreen(title: 'profile', widget: ProfileScreen()),
-      ][_currentIndex].widget,
-      bottomNavigationBar: CurvedNavigationBar(
-        onTap: (int value) {
-          setState(() {
-            _currentIndex = value;
-          });
-        },
-        color: Colors.grey.shade300,
-        height: 60,
-        backgroundColor: Colors.white70,
-        index: _currentIndex,
-        items: <Widget>[
-          Icon(Icons.category, size: 30,color: _currentIndex == 0 ? Color(0xFF042C4C) :Colors.grey,),
-          Icon(Icons.shopping_cart, size: 30,color: _currentIndex == 1 ? Color(0xFF042C4C) :Colors.grey,),
-          Icon(Icons.home, size: 30,color: _currentIndex == 2 ? Color(0xFF042C4C) :Colors.grey,),
-          Icon(Icons.shop, size: 30,color: _currentIndex == 3 ? Color(0xFF042C4C) :Colors.grey,),
-          Icon(Icons.perm_identity, size: 30,color: _currentIndex == 4 ? Color(0xFF042C4C) :Colors.grey,),
-        ],
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(
+        body: [
+          BnScreen(title: 'Category', widget: const CategoryScreen1()),
+          BnScreen(title: 'Cart', widget: const CardScreen()),
+          BnScreen(title: 'Home', widget: const HomeScreen()),
+          BnScreen(title: 'Order', widget: const EmpScreen()),
+          BnScreen(title: 'profile', widget: const ProfileScreen()),
+        ][_currentIndex]
+            .widget,
+        bottomNavigationBar: CurvedNavigationBar(
+          onTap: (int value) {
+            setState(() {
+              _currentIndex = value;
+            });
+          },
+          color: Colors.grey.shade300,
+          height: 60,
+          backgroundColor: Colors.white70,
+          index: _currentIndex,
+          items: <Widget>[
+            Icon(
+              Icons.category,
+              size: 30,
+              color: _currentIndex == 0 ? Color(0xFF042C4C) : Colors.grey,
+            ),
+            Icon(
+              Icons.shopping_cart,
+              size: 30,
+              color: _currentIndex == 1 ? Color(0xFF042C4C) : Colors.grey,
+            ),
+            Icon(
+              Icons.home,
+              size: 30,
+              color: _currentIndex == 2 ? Color(0xFF042C4C) : Colors.grey,
+            ),
+            Icon(
+              Icons.shop,
+              size: 30,
+              color: _currentIndex == 3 ? Color(0xFF042C4C) : Colors.grey,
+            ),
+            Icon(
+              Icons.perm_identity,
+              size: 30,
+              color: _currentIndex == 4 ? Color(0xFF042C4C) : Colors.grey,
+            ),
+          ],
+        ),
       ),
     );
   }
