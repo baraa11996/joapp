@@ -81,9 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 15.h,
-                ),
+                SizedBox(height: 15.h),
                 CarouselSlider(
                     items: imgList
                         .map(
@@ -112,9 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       aspectRatio: 2.7,
                       enlargeCenterPage: true,
                     )),
-                SizedBox(
-                  height: 25.h,
-                ),
+                SizedBox(height: 25.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -135,9 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 25.h,
-                ),
+                SizedBox(height: 25.h),
                 SizedBox(
                   height: 150.h,
                   child: ListView.builder(
@@ -156,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         },
                         child: Container(
-                          margin: EdgeInsets.only(right: 10),
+                          margin: const EdgeInsets.only(right: 10),
                           clipBehavior: Clip.antiAlias,
                           width: 200.w,
                           height: 400.h,
@@ -192,9 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-                SizedBox(
-                  height: 25.h,
-                ),
+                SizedBox(height: 25.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
